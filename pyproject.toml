@@ -1,0 +1,26 @@
+[project]
+name = "rumeur-reseau"
+version = "0.1.0"
+description = "Etude de la propagtion d'une rumeur sur un réseau"
+readme = "README.md"
+authors = [
+    { name = "Octave Steux", email = "octave.steux@icloud.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "matplotlib>=3.11.2",
+    "networkx>=3.7",
+    "numpy>=2.5.4",
+]
+
+[project.scripts]
+rumeur-reseau = "rumeur_reseau:main"
+
+[build-system]
+requires = ["uv_build>=0.13.5,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+]
