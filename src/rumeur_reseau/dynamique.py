@@ -32,5 +32,5 @@ def simuler(A, p_transmission, p_saturation, p_oubli, source, pas_max):
                 etats[p] = 0
         pas += 1
 
-    return int(deja_entendu.sum()), pas, (propagateur.size == 0)
+    return int(deja_entendu.sum()), pas, (propagateur.size == 0), etats
 
