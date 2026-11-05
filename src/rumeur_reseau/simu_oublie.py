@@ -1,4 +1,4 @@
-from math import *
+from math import sqrt
 import numpy as np
 from sknetwork.data import erdos_renyi
 from sknetwork.visualization import visualize_graph
