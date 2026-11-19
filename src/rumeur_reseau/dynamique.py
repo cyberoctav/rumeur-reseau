@@ -36,7 +36,7 @@ def simuler(A, p_transmission, p_saturation, source, pas_max, trace = False):
 
     return int(deja_entendu.sum()), pas, (propagateur.size == 0), etats, tableau 
 
-def simuler_oubli(A, p_transmission, p_saturation, p_oubli, source, pas_max, trace = False):
+def simuler_oubli(A, p_transmission, p_saturation, p_oubli, source, pas_max, trace):
     assert pas_max > 0, "pas_max doit être supérieur à 0"
     tableau = None 
     n = A.shape[0]
@@ -73,7 +73,7 @@ def simuler_oubli(A, p_transmission, p_saturation, p_oubli, source, pas_max, tra
     return int(deja_entendu.sum()), pas, (propagateur.size == 0), etats, tableau 
 
 
-def simuler_dementi(A, p_transmission, p_saturation, p_oubli, p_dementi, source, source_dementi, pas_max, trace = False):
+def simuler_dementi(A, p_transmission, p_saturation, p_oubli, p_dementi, source, source_dementi, pas_max, trace):
     assert pas_max > 0, "pas_max doit être supérieur à 0"
     tableau = None 
     n = A.shape[0]
