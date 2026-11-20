@@ -1,5 +1,5 @@
 import numpy as np 
-import matplotlib.pyplot as plt
+
 
 
 
@@ -73,7 +73,7 @@ def simuler_oubli(A, p_transmission, p_saturation, p_oubli, source, pas_max, tra
     return int(deja_entendu.sum()), pas, (propagateur.size == 0), etats, tableau 
 
 
-def simuler_dementi(A, p_transmission, p_saturation, p_oubli, p_dementi, source, source_dementi, pas_max, trace):
+def simuler_dementi(A, p_transmission, p_saturation, p_oubli, p_dementi, p_saturation_dementi, source, source_dementi, pas_max, trace):
     assert pas_max > 0, "pas_max doit être supérieur à 0"
     tableau = None 
     n = A.shape[0]
@@ -90,7 +90,7 @@ def simuler_dementi(A, p_transmission, p_saturation, p_oubli, p_dementi, source,
     deja_dementi = np.zeros(n)
     deja_dementi[source_dementi]=True
     etats[source_dementi] = 3
-    pas = 0
+    pas = 1
     if trace :
         tableau = np.zeros((pas_max+1,n))
         tableau[0] = etats
@@ -115,14 +115,14 @@ def simuler_dementi(A, p_transmission, p_saturation, p_oubli, p_dementi, source,
         for k in dementi: 
             voisins = A[k].indices 
             for v in voisins :
-                if etats[v] == 2 :
+                if etats[v] == 0 :
                     if np.random.rand() < p_dementi : 
                         etats[v] = 3
-            if np.random.rand() < p_saturation: # saturation du propagateur
+            if np.random.rand() < p_saturation_dementi: # saturation du dementeur
                 etats[k] = 4
 
         if trace : 
             tableau[pas] = etats
         pas += 1
     
-    return int(deja_entendu.sum()), int(deja_dementi.sum()), pas, (propagateur.size == 0), etats, tableau 
+    return int(deja_entendu.sum()), int(deja_dementi.sum()), pas, (propagateur.size == 0), etats, tableau[:pas] 
